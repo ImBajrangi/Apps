@@ -1,0 +1,44 @@
+{
+    "firestore": {
+        "rules": "firestore.rules",
+        "indexes": "firestore.indexes.json"
+    },
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "shriji-garden",
+                    "appId": "1:854526395916:android:7abd79e3f4e702086fd029",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "ios": {
+                "default": {
+                    "projectId": "shriji-garden",
+                    "appId": "1:854526395916:ios:86f2410afec6abed6fd029",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "ios/Runner/GoogleService-Info.plist"
+                }
+            },
+            "macos": {
+                "default": {
+                    "projectId": "shriji-garden",
+                    "appId": "1:854526395916:ios:86f2410afec6abed6fd029",
+                    "uploadDebugSymbols": false,
+                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "shriji-garden",
+                    "configurations": {
+                        "android": "1:854526395916:android:7abd79e3f4e702086fd029",
+                        "ios": "1:854526395916:ios:86f2410afec6abed6fd029",
+                        "macos": "1:854526395916:ios:86f2410afec6abed6fd029",
+                        "web": "1:854526395916:web:6526aec02d419b446fd029"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "854526395916",
+    "project_id": "shriji-garden",
+    "storage_bucket": "shriji-garden.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854526395916:android:7abd79e3f4e702086fd029",
+        "android_client_info": {
+          "package_name": "com.shrijigarden.shriji_garden_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5Z9wB0wSx7x9ZH180jUTy0Dts4HKeDBI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
