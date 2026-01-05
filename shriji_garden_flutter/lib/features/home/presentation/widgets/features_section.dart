@@ -8,22 +8,25 @@ class FeaturesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final features = [
-      _FeatureItem(
+      const _FeatureItem(
         icon: Icons.diamond_outlined,
         title: 'Beautiful Venue',
-        description: 'A stunning location that provides the perfect backdrop for your wedding.',
+        description:
+            'A stunning location that provides the perfect backdrop for your wedding.',
         color: AppColors.primary,
       ),
-      _FeatureItem(
+      const _FeatureItem(
         icon: Icons.favorite_border,
         title: 'Customizable Packages',
-        description: 'Choose from a variety of packages or create your own to suit your needs.',
+        description:
+            'Choose from a variety of packages or create your own to suit your needs.',
         color: AppColors.secondary,
       ),
-      _FeatureItem(
+      const _FeatureItem(
         icon: Icons.groups_outlined,
         title: 'Professional Services',
-        description: 'Our experienced team will ensure every detail is taken care of.',
+        description:
+            'Our experienced team will ensure every detail is taken care of.',
         color: AppColors.accent,
       ),
     ];
@@ -36,13 +39,11 @@ class FeaturesSection extends StatelessWidget {
           Text(
             'Why Choose Us',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.textPrimary,
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textPrimary,
+                ),
           ).animate().fadeIn(duration: 500.ms),
-          
           const SizedBox(height: 8),
-          
           Container(
             width: 60,
             height: 4,
@@ -51,13 +52,11 @@ class FeaturesSection extends StatelessWidget {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          
           const SizedBox(height: 40),
-          
           ...features.asMap().entries.map((entry) {
             final index = entry.key;
             final feature = entry.value;
-            
+
             return Padding(
               padding: const EdgeInsets.only(bottom: 24),
               child: _FeatureCard(
@@ -137,17 +136,17 @@ class _FeatureCard extends StatelessWidget {
                 Text(
                   feature.title,
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.textPrimary,
-                  ),
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.textPrimary,
+                      ),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   feature.description,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: AppColors.textSecondary,
-                    height: 1.4,
-                  ),
+                        color: AppColors.textSecondary,
+                        height: 1.4,
+                      ),
                 ),
               ],
             ),
@@ -155,8 +154,8 @@ class _FeatureCard extends StatelessWidget {
         ],
       ),
     )
-    .animate()
-    .fadeIn(duration: 500.ms, delay: delay)
-    .slideX(begin: 0.1, end: 0);
+        .animate()
+        .fadeIn(duration: 500.ms, delay: delay)
+        .slideX(begin: 0.1, end: 0);
   }
 }

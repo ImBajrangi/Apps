@@ -14,11 +14,11 @@ class PackagesPage extends StatefulWidget {
 
 class _PackagesPageState extends State<PackagesPage> {
   String? _successMessage;
-  
+
   @override
   Widget build(BuildContext context) {
     final packages = Package.samplePackages;
-    
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -38,7 +38,7 @@ class _PackagesPageState extends State<PackagesPage> {
                 ),
               ),
               background: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -51,7 +51,7 @@ class _PackagesPageState extends State<PackagesPage> {
               ),
             ),
           ),
-          
+
           // Success Message
           if (_successMessage != null)
             SliverToBoxAdapter(
@@ -85,7 +85,7 @@ class _PackagesPageState extends State<PackagesPage> {
                 ),
               ).animate().fadeIn(duration: 300.ms).slideY(begin: -0.2, end: 0),
             ),
-          
+
           // Header Text
           SliverToBoxAdapter(
             child: Padding(
@@ -96,22 +96,22 @@ class _PackagesPageState extends State<PackagesPage> {
                     'Choose the perfect package for your special day',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: AppColors.textSecondary,
-                    ),
+                          color: AppColors.textSecondary,
+                        ),
                   ),
                   const SizedBox(height: 8),
                   Text(
                     'All packages can be customized to your needs',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.textTertiary,
-                    ),
+                          color: AppColors.textTertiary,
+                        ),
                   ),
                 ],
               ),
             ),
           ),
-          
+
           // Package Cards
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -132,7 +132,7 @@ class _PackagesPageState extends State<PackagesPage> {
               ),
             ),
           ),
-          
+
           // Bottom Padding
           const SliverToBoxAdapter(
             child: SizedBox(height: 100),
@@ -152,7 +152,8 @@ class _PackagesPageState extends State<PackagesPage> {
         onSubmit: (formData) {
           Navigator.pop(context);
           setState(() {
-            _successMessage = 'Your request has been submitted successfully! An admin will contact you shortly.';
+            _successMessage =
+                'Your request has been submitted successfully! An admin will contact you shortly.';
           });
         },
       ),

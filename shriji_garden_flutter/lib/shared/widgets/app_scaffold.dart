@@ -18,11 +18,31 @@ class _AppScaffoldState extends State<AppScaffold> {
   int _currentIndex = 0;
 
   final List<_NavItem> _navItems = [
-    _NavItem(icon: Icons.home_outlined, activeIcon: Icons.home, label: 'Home', path: '/'),
-    _NavItem(icon: Icons.local_offer_outlined, activeIcon: Icons.local_offer, label: 'Packages', path: '/packages'),
-    _NavItem(icon: Icons.tune_outlined, activeIcon: Icons.tune, label: 'Customize', path: '/customize'),
-    _NavItem(icon: Icons.photo_library_outlined, activeIcon: Icons.photo_library, label: 'Gallery', path: '/gallery'),
-    _NavItem(icon: Icons.info_outline, activeIcon: Icons.info, label: 'About', path: '/about'),
+    const _NavItem(
+        icon: Icons.home_outlined,
+        activeIcon: Icons.home,
+        label: 'Home',
+        path: '/'),
+    const _NavItem(
+        icon: Icons.local_offer_outlined,
+        activeIcon: Icons.local_offer,
+        label: 'Packages',
+        path: '/packages'),
+    const _NavItem(
+        icon: Icons.tune_outlined,
+        activeIcon: Icons.tune,
+        label: 'Customize',
+        path: '/customize'),
+    const _NavItem(
+        icon: Icons.photo_library_outlined,
+        activeIcon: Icons.photo_library,
+        label: 'Gallery',
+        path: '/gallery'),
+    const _NavItem(
+        icon: Icons.info_outline,
+        activeIcon: Icons.info,
+        label: 'About',
+        path: '/about'),
   ];
 
   @override
@@ -52,7 +72,7 @@ class _AppScaffoldState extends State<AppScaffold> {
                 final index = entry.key;
                 final item = entry.value;
                 final isSelected = _currentIndex == index;
-                
+
                 return _buildNavItem(
                   item: item,
                   isSelected: isSelected,
@@ -81,7 +101,9 @@ class _AppScaffoldState extends State<AppScaffold> {
           vertical: 8,
         ),
         decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary.withOpacity(0.1) : Colors.transparent,
+          color: isSelected
+              ? AppColors.primary.withOpacity(0.1)
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(
@@ -96,7 +118,7 @@ class _AppScaffoldState extends State<AppScaffold> {
               const SizedBox(width: 8),
               Text(
                 item.label,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.primary,
                   fontWeight: FontWeight.w600,
                   fontSize: 13,

@@ -11,8 +11,8 @@ class GalleryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final images = AppConstants.galleryImages;
-    
+    const images = AppConstants.galleryImages;
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -32,7 +32,7 @@ class GalleryPage extends StatelessWidget {
                 ),
               ),
               background: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -45,7 +45,7 @@ class GalleryPage extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Header
           SliverToBoxAdapter(
             child: Padding(
@@ -54,12 +54,12 @@ class GalleryPage extends StatelessWidget {
                 'Explore the beauty of ShriJi Garden',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: AppColors.textSecondary,
-                ),
+                      color: AppColors.textSecondary,
+                    ),
               ).animate().fadeIn(duration: 400.ms),
             ),
           ),
-          
+
           // Gallery Grid
           SliverPadding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -82,7 +82,7 @@ class GalleryPage extends StatelessWidget {
               ),
             ),
           ),
-          
+
           // Bottom Padding
           const SliverToBoxAdapter(
             child: SizedBox(height: 100),
@@ -161,7 +161,7 @@ class _GalleryImageCard extends StatelessWidget {
                       color: Colors.white.withOpacity(0.9),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.zoom_in,
                       color: AppColors.primary,
                       size: 16,
@@ -174,9 +174,9 @@ class _GalleryImageCard extends StatelessWidget {
         ),
       ),
     )
-    .animate()
-    .fadeIn(duration: 400.ms, delay: Duration(milliseconds: 80 * index))
-    .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
+        .animate()
+        .fadeIn(duration: 400.ms, delay: Duration(milliseconds: 80 * index))
+        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
   }
 
   void _openGalleryViewer(BuildContext context) {
@@ -250,13 +250,14 @@ class _GalleryViewerState extends State<_GalleryViewer> {
                 child: CircularProgressIndicator(
                   value: event == null
                       ? null
-                      : event.cumulativeBytesLoaded / (event.expectedTotalBytes ?? 1),
+                      : event.cumulativeBytesLoaded /
+                          (event.expectedTotalBytes ?? 1),
                   color: Colors.white,
                 ),
               );
             },
           ),
-          
+
           // Top Bar
           SafeArea(
             child: Padding(
@@ -280,10 +281,11 @@ class _GalleryViewerState extends State<_GalleryViewer> {
                       ),
                     ),
                   ),
-                  
+
                   // Counter
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.5),
                       borderRadius: BorderRadius.circular(16),

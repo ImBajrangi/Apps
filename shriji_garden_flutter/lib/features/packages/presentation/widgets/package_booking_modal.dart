@@ -58,7 +58,7 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
               borderRadius: BorderRadius.circular(2),
             ),
           ),
-          
+
           // Header
           Padding(
             padding: const EdgeInsets.all(20),
@@ -69,8 +69,8 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
                   child: Text(
                     'Book ${widget.package.name}',
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ),
                 IconButton(
@@ -80,9 +80,9 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
               ],
             ),
           ),
-          
+
           const Divider(height: 1),
-          
+
           // Form
           Expanded(
             child: SingleChildScrollView(
@@ -128,9 +128,9 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
                         ),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Phone
                     _buildTextField(
                       controller: _phoneController,
@@ -144,9 +144,9 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
                         return null;
                       },
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Date & Guests Row
                     Row(
                       children: [
@@ -170,9 +170,9 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
                         ),
                       ],
                     ),
-                    
+
                     const SizedBox(height: 16),
-                    
+
                     // Special Requests
                     _buildTextField(
                       controller: _requestsController,
@@ -180,9 +180,9 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
                       icon: Icons.note_outlined,
                       maxLines: 3,
                     ),
-                    
+
                     const SizedBox(height: 24),
-                    
+
                     // Submit Button
                     ElevatedButton(
                       onPressed: _isSubmitting ? null : _handleSubmit,
@@ -235,10 +235,10 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
       onTap: _selectDate,
       child: AbsorbPointer(
         child: TextFormField(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: 'Preferred Date',
-            prefixIcon: const Icon(Icons.calendar_today_outlined, size: 20),
-            suffixIcon: const Icon(Icons.arrow_drop_down),
+            prefixIcon: Icon(Icons.calendar_today_outlined, size: 20),
+            suffixIcon: Icon(Icons.arrow_drop_down),
           ),
           controller: TextEditingController(
             text: _selectedDate != null
@@ -265,7 +265,7 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(
+            colorScheme: const ColorScheme.light(
               primary: AppColors.primary,
               onPrimary: Colors.white,
               onSurface: AppColors.textPrimary,
@@ -275,7 +275,7 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
         );
       },
     );
-    
+
     if (date != null) {
       setState(() => _selectedDate = date);
     }
@@ -283,9 +283,9 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
 
   Future<void> _handleSubmit() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     setState(() => _isSubmitting = true);
-        final formData = {
+    final formData = {
       'name': _nameController.text,
       'email': _emailController.text,
       'phone': _phoneController.text,
@@ -295,7 +295,7 @@ class _PackageBookingModalState extends State<PackageBookingModal> {
       'package': widget.package.name,
       'status': 'pending',
     };
-    
+
     try {
       await _bookingService.submitBooking(formData);
       if (mounted) {

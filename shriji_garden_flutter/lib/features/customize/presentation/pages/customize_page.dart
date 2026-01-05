@@ -18,18 +18,22 @@ class _CustomizePageState extends State<CustomizePage> {
   final _guestsController = TextEditingController();
   final _decorationThemeController = TextEditingController();
   final _requestsController = TextEditingController();
-  
+
   DateTime? _selectedDate;
   String _eventType = 'Wedding';
   String _catering = 'Vegetarian';
   final List<String> _entertainment = [];
-  
+
   bool _isSubmitting = false;
   String? _successMessage;
   final _bookingService = BookingService();
 
   final List<String> _eventTypes = ['Wedding', 'Reception', 'Engagement'];
-  final List<String> _cateringOptions = ['Vegetarian', 'Non-Vegetarian', 'Jain'];
+  final List<String> _cateringOptions = [
+    'Vegetarian',
+    'Non-Vegetarian',
+    'Jain'
+  ];
   final List<String> _entertainmentOptions = ['DJ', 'Live Band', 'Dancers'];
 
   @override
@@ -64,7 +68,7 @@ class _CustomizePageState extends State<CustomizePage> {
                 ),
               ),
               background: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -77,7 +81,7 @@ class _CustomizePageState extends State<CustomizePage> {
               ),
             ),
           ),
-          
+
           // Content
           SliverToBoxAdapter(
             child: Padding(
@@ -93,11 +97,13 @@ class _CustomizePageState extends State<CustomizePage> {
                       decoration: BoxDecoration(
                         color: AppColors.success.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.success.withOpacity(0.3)),
+                        border: Border.all(
+                            color: AppColors.success.withOpacity(0.3)),
                       ),
                       child: Row(
                         children: [
-                          const Icon(Icons.check_circle, color: AppColors.success),
+                          const Icon(Icons.check_circle,
+                              color: AppColors.success),
                           const SizedBox(width: 12),
                           Expanded(
                             child: Text(
@@ -110,13 +116,14 @@ class _CustomizePageState extends State<CustomizePage> {
                           ),
                           IconButton(
                             icon: const Icon(Icons.close, size: 18),
-                            onPressed: () => setState(() => _successMessage = null),
+                            onPressed: () =>
+                                setState(() => _successMessage = null),
                             color: AppColors.success,
                           ),
                         ],
                       ),
                     ).animate().fadeIn(duration: 300.ms),
-                  
+
                   // Form Card
                   Container(
                     padding: const EdgeInsets.all(24),
@@ -133,7 +140,7 @@ class _CustomizePageState extends State<CustomizePage> {
                           // Personal Information Section
                           _buildSectionTitle('Personal Information'),
                           const SizedBox(height: 16),
-                          
+
                           _buildTextField(
                             controller: _nameController,
                             label: 'Full Name',
@@ -141,7 +148,7 @@ class _CustomizePageState extends State<CustomizePage> {
                             required: true,
                           ),
                           const SizedBox(height: 16),
-                          
+
                           Row(
                             children: [
                               Expanded(
@@ -165,15 +172,15 @@ class _CustomizePageState extends State<CustomizePage> {
                               ),
                             ],
                           ),
-                          
+
                           const SizedBox(height: 24),
                           const Divider(),
                           const SizedBox(height: 24),
-                          
+
                           // Event Details Section
                           _buildSectionTitle('Event Details'),
                           const SizedBox(height: 16),
-                          
+
                           Row(
                             children: [
                               Expanded(child: _buildDateField()),
@@ -189,15 +196,18 @@ class _CustomizePageState extends State<CustomizePage> {
                               ),
                             ],
                           ),
-                          
+
                           const SizedBox(height: 24),
-                          
+
                           // Event Type
                           Text(
                             'Event Type',
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                           ),
                           const SizedBox(height: 8),
                           Wrap(
@@ -212,23 +222,28 @@ class _CustomizePageState extends State<CustomizePage> {
                                     setState(() => _eventType = type);
                                   }
                                 },
-                                selectedColor: AppColors.primary.withOpacity(0.2),
+                                selectedColor:
+                                    AppColors.primary.withOpacity(0.2),
                                 labelStyle: TextStyle(
-                                  color: isSelected ? AppColors.primary : AppColors.textSecondary,
-                                  fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
+                                  color: isSelected
+                                      ? AppColors.primary
+                                      : AppColors.textSecondary,
+                                  fontWeight: isSelected
+                                      ? FontWeight.w600
+                                      : FontWeight.normal,
                                 ),
                               );
                             }).toList(),
                           ),
-                          
+
                           const SizedBox(height: 24),
                           const Divider(),
                           const SizedBox(height: 24),
-                          
+
                           // Preferences Section
                           _buildSectionTitle('Preferences'),
                           const SizedBox(height: 16),
-                          
+
                           // Catering
                           _buildDropdown(
                             label: 'Catering',
@@ -240,29 +255,33 @@ class _CustomizePageState extends State<CustomizePage> {
                               }
                             },
                           ),
-                          
+
                           const SizedBox(height: 16),
-                          
+
                           _buildTextField(
                             controller: _decorationThemeController,
                             label: 'Decoration Theme',
                             icon: Icons.palette_outlined,
                           ),
-                          
+
                           const SizedBox(height: 16),
-                          
+
                           // Entertainment
                           Text(
                             'Entertainment',
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                ),
                           ),
                           const SizedBox(height: 8),
                           Wrap(
                             spacing: 8,
                             children: _entertainmentOptions.map((option) {
-                              final isSelected = _entertainment.contains(option);
+                              final isSelected =
+                                  _entertainment.contains(option);
                               return FilterChip(
                                 label: Text(option),
                                 selected: isSelected,
@@ -275,17 +294,20 @@ class _CustomizePageState extends State<CustomizePage> {
                                     }
                                   });
                                 },
-                                selectedColor: AppColors.primary.withOpacity(0.2),
+                                selectedColor:
+                                    AppColors.primary.withOpacity(0.2),
                                 checkmarkColor: AppColors.primary,
                                 labelStyle: TextStyle(
-                                  color: isSelected ? AppColors.primary : AppColors.textSecondary,
+                                  color: isSelected
+                                      ? AppColors.primary
+                                      : AppColors.textSecondary,
                                 ),
                               );
                             }).toList(),
                           ),
-                          
+
                           const SizedBox(height: 24),
-                          
+
                           // Special Requests
                           _buildTextField(
                             controller: _requestsController,
@@ -293,9 +315,9 @@ class _CustomizePageState extends State<CustomizePage> {
                             icon: Icons.note_outlined,
                             maxLines: 3,
                           ),
-                          
+
                           const SizedBox(height: 32),
-                          
+
                           // Submit Button
                           ElevatedButton(
                             onPressed: _isSubmitting ? null : _handleSubmit,
@@ -316,8 +338,11 @@ class _CustomizePageState extends State<CustomizePage> {
                         ],
                       ),
                     ),
-                  ).animate().fadeIn(duration: 500.ms).slideY(begin: 0.05, end: 0),
-                  
+                  )
+                      .animate()
+                      .fadeIn(duration: 500.ms)
+                      .slideY(begin: 0.05, end: 0),
+
                   const SizedBox(height: 100),
                 ],
               ),
@@ -332,9 +357,9 @@ class _CustomizePageState extends State<CustomizePage> {
     return Text(
       title,
       style: Theme.of(context).textTheme.titleMedium?.copyWith(
-        fontWeight: FontWeight.bold,
-        color: AppColors.textPrimary,
-      ),
+            fontWeight: FontWeight.bold,
+            color: AppColors.textPrimary,
+          ),
     );
   }
 
@@ -401,7 +426,7 @@ class _CustomizePageState extends State<CustomizePage> {
     required ValueChanged<String?> onChanged,
   }) {
     return DropdownButtonFormField<String>(
-      value: value,
+      initialValue: value,
       decoration: InputDecoration(
         labelText: label,
         prefixIcon: const Icon(Icons.restaurant_outlined, size: 20),
@@ -425,7 +450,7 @@ class _CustomizePageState extends State<CustomizePage> {
       builder: (context, child) {
         return Theme(
           data: Theme.of(context).copyWith(
-            colorScheme: ColorScheme.light(
+            colorScheme: const ColorScheme.light(
               primary: AppColors.primary,
             ),
           ),
@@ -433,17 +458,17 @@ class _CustomizePageState extends State<CustomizePage> {
         );
       },
     );
-    
+
     if (date != null) {
       setState(() => _selectedDate = date);
     }
   }
 
-   Future<void> _handleSubmit() async {
+  Future<void> _handleSubmit() async {
     if (!_formKey.currentState!.validate()) return;
-    
+
     setState(() => _isSubmitting = true);
-    
+
     final formData = {
       'name': _nameController.text,
       'email': _emailController.text,
@@ -461,7 +486,7 @@ class _CustomizePageState extends State<CustomizePage> {
 
     try {
       await _bookingService.submitBooking(formData);
-      
+
       setState(() {
         _successMessage = 'Your request has been submitted successfully!';
         // Reset form

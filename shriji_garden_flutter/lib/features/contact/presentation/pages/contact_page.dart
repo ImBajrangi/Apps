@@ -49,7 +49,7 @@ class _ContactPageState extends State<ContactPage> {
                 ),
               ),
               background: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -389,7 +389,7 @@ class _ContactInfoItem extends StatelessWidget {
               ],
             ),
           ),
-          Icon(
+          const Icon(
             Icons.arrow_forward_ios,
             size: 16,
             color: AppColors.textTertiary,

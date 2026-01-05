@@ -11,7 +11,7 @@ class GalleryPreviewSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final images = AppConstants.galleryImages.take(6).toList();
-    
+
     return Container(
       color: AppColors.background,
       padding: const EdgeInsets.symmetric(vertical: 48, horizontal: 20),
@@ -20,23 +20,23 @@ class GalleryPreviewSection extends StatelessWidget {
           Text(
             'Our Gallery',
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: AppColors.textPrimary,
-            ),
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textPrimary,
+                ),
           ).animate().fadeIn(duration: 500.ms),
-          
+
           const SizedBox(height: 8),
-          
+
           Text(
             'A glimpse of the beautiful moments at ShriJi Garden.',
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: AppColors.textSecondary,
-            ),
+                  color: AppColors.textSecondary,
+                ),
           ).animate().fadeIn(duration: 500.ms, delay: 100.ms),
-          
+
           const SizedBox(height: 32),
-          
+
           // Image Grid
           GridView.builder(
             shrinkWrap: true,
@@ -56,9 +56,9 @@ class GalleryPreviewSection extends StatelessWidget {
               );
             },
           ),
-          
+
           const SizedBox(height: 32),
-          
+
           // View More Button
           OutlinedButton(
             onPressed: () => context.push('/gallery'),
@@ -66,9 +66,7 @@ class GalleryPreviewSection extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
             ),
             child: const Text('View More'),
-          )
-          .animate()
-          .fadeIn(duration: 500.ms, delay: 400.ms),
+          ).animate().fadeIn(duration: 500.ms, delay: 400.ms),
         ],
       ),
     );
@@ -141,7 +139,7 @@ class _GalleryImageCard extends StatelessWidget {
                     color: Colors.white.withOpacity(0.9),
                     borderRadius: BorderRadius.circular(8),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.zoom_in,
                     color: AppColors.primary,
                     size: 18,
@@ -153,8 +151,8 @@ class _GalleryImageCard extends StatelessWidget {
         ),
       ),
     )
-    .animate()
-    .fadeIn(duration: 400.ms, delay: Duration(milliseconds: 100 * index))
-    .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
+        .animate()
+        .fadeIn(duration: 400.ms, delay: Duration(milliseconds: 100 * index))
+        .scale(begin: const Offset(0.95, 0.95), end: const Offset(1, 1));
   }
 }

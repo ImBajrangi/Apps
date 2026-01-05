@@ -13,7 +13,7 @@ class AdminRequestsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bookingService = BookingService();
-    
+
     return Scaffold(
       backgroundColor: const Color(0xFFF3F4F6),
       body: StreamBuilder<List<BookingRequest>>(
@@ -32,8 +32,10 @@ class AdminRequestsPage extends StatelessWidget {
             );
           }
           final requests = snapshot.data ?? [];
-          final isLoading = snapshot.connectionState == ConnectionState.waiting && requests.isEmpty;
-          
+          final isLoading =
+              snapshot.connectionState == ConnectionState.waiting &&
+                  requests.isEmpty;
+
           return CustomScrollView(
             slivers: [
               // App Bar
@@ -68,7 +70,7 @@ class AdminRequestsPage extends StatelessWidget {
                   ),
                 ),
               ),
-              
+
               // Header
               SliverToBoxAdapter(
                 child: Padding(
@@ -78,14 +80,13 @@ class AdminRequestsPage extends StatelessWidget {
                     children: [
                       Text(
                         'Submitted Requests',
-                        style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.textPrimary,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textPrimary,
+                                ),
                       ).animate().fadeIn(duration: 400.ms),
-                      
                       const SizedBox(height: 8),
-                      
                       if (isLoading)
                         const SizedBox(
                           height: 20,
@@ -95,15 +96,16 @@ class AdminRequestsPage extends StatelessWidget {
                       else
                         Text(
                           '${requests.length} total requests',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: AppColors.textSecondary,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: AppColors.textSecondary,
+                                  ),
                         ).animate().fadeIn(duration: 400.ms, delay: 100.ms),
                     ],
                   ),
                 ),
               ),
-              
+
               // Request Cards
               if (requests.isEmpty && !isLoading)
                 SliverToBoxAdapter(
@@ -112,7 +114,7 @@ class AdminRequestsPage extends StatelessWidget {
                       padding: const EdgeInsets.all(40),
                       child: Column(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.inbox_outlined,
                             size: 64,
                             color: AppColors.textTertiary,
@@ -120,9 +122,10 @@ class AdminRequestsPage extends StatelessWidget {
                           const SizedBox(height: 16),
                           Text(
                             'No requests submitted yet.',
-                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                              color: AppColors.textSecondary,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                      color: AppColors.textSecondary,
+                                    ),
                           ),
                         ],
                       ),
@@ -149,7 +152,7 @@ class AdminRequestsPage extends StatelessWidget {
                     ),
                   ),
                 ),
-              
+
               const SliverToBoxAdapter(
                 child: SizedBox(height: 100),
               ),
@@ -218,7 +221,8 @@ class _RequestCard extends StatelessWidget {
                 title: const Text('Send Email'),
                 onTap: () {
                   Navigator.pop(context);
-                  _launchUrl('mailto:${request.email}?subject=Booking at ShriJi Garden');
+                  _launchUrl(
+                      'mailto:${request.email}?subject=Booking at ShriJi Garden');
                 },
               ),
           ],
@@ -232,7 +236,7 @@ class _RequestCard extends StatelessWidget {
     final dateFormat = DateFormat('MMM d, yyyy');
     final timeFormat = DateFormat('h:mm a');
     final bool isApproved = request.status == 'approved';
-    
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -246,8 +250,11 @@ class _RequestCard extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: isApproved ? Colors.green.withOpacity(0.05) : AppColors.primary.withOpacity(0.05),
-              borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
+              color: isApproved
+                  ? Colors.green.withOpacity(0.05)
+                  : AppColors.primary.withOpacity(0.05),
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(16)),
             ),
             child: Row(
               children: [
@@ -255,12 +262,15 @@ class _RequestCard extends StatelessWidget {
                   width: 40,
                   height: 40,
                   decoration: BoxDecoration(
-                    color: (isApproved ? Colors.green : AppColors.primary).withOpacity(0.1),
+                    color: (isApproved ? Colors.green : AppColors.primary)
+                        .withOpacity(0.1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Center(
                     child: Text(
-                      request.name.isNotEmpty ? request.name[0].toUpperCase() : 'U',
+                      request.name.isNotEmpty
+                          ? request.name[0].toUpperCase()
+                          : 'U',
                       style: TextStyle(
                         color: isApproved ? Colors.green : AppColors.primary,
                         fontWeight: FontWeight.bold,
@@ -276,24 +286,27 @@ class _RequestCard extends StatelessWidget {
                     children: [
                       Text(
                         request.name,
-                        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style:
+                            Theme.of(context).textTheme.titleMedium?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
                       ),
                       Text(
                         request.email,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: AppColors.textSecondary,
-                        ),
+                              color: AppColors.textSecondary,
+                            ),
                       ),
                     ],
                   ),
                 ),
                 if (request.packageName != null)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                     decoration: BoxDecoration(
-                      color: (isApproved ? Colors.green : AppColors.primary).withOpacity(0.1),
+                      color: (isApproved ? Colors.green : AppColors.primary)
+                          .withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: Text(
@@ -308,7 +321,7 @@ class _RequestCard extends StatelessWidget {
               ],
             ),
           ),
-          
+
           // Details
           Padding(
             padding: const EdgeInsets.all(16),
@@ -332,26 +345,28 @@ class _RequestCard extends StatelessWidget {
                     value: request.guests!,
                   ),
                 if (request.eventType != null)
-                    _DetailRow(
-                      icon: Icons.celebration_outlined,
-                      label: 'Type',
-                      value: request.eventType!,
-                    ),
+                  _DetailRow(
+                    icon: Icons.celebration_outlined,
+                    label: 'Type',
+                    value: request.eventType!,
+                  ),
                 if (request.requests != null && request.requests!.isNotEmpty)
                   Padding(
                     padding: const EdgeInsets.only(top: 8),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.note_outlined, size: 18, color: Colors.grey),
+                        const Icon(Icons.note_outlined,
+                            size: 18, color: Colors.grey),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             request.requests!,
-                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              fontStyle: FontStyle.italic,
-                              color: AppColors.textSecondary,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      fontStyle: FontStyle.italic,
+                                      color: AppColors.textSecondary,
+                                    ),
                           ),
                         ),
                       ],
@@ -368,9 +383,12 @@ class _RequestCard extends StatelessWidget {
                     ),
                     const Spacer(),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 2),
                       decoration: BoxDecoration(
-                        color: isApproved ? Colors.green.withOpacity(0.1) : Colors.orange.withOpacity(0.1),
+                        color: isApproved
+                            ? Colors.green.withOpacity(0.1)
+                            : Colors.orange.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(4),
                       ),
                       child: Text(
@@ -382,18 +400,18 @@ class _RequestCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                   ],
+                  ],
                 ),
               ],
             ),
           ),
-          
+
           // Actions
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.background,
-              borderRadius: const BorderRadius.vertical(bottom: Radius.circular(16)),
+              borderRadius: BorderRadius.vertical(bottom: Radius.circular(16)),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -409,7 +427,8 @@ class _RequestCard extends StatelessWidget {
                   ElevatedButton.icon(
                     onPressed: () {
                       if (request.docId != null) {
-                        bookingService.updateBookingStatus(request.docId!, 'approved');
+                        bookingService.updateBookingStatus(
+                            request.docId!, 'approved');
                       }
                     },
                     icon: const Icon(Icons.check, size: 18),
@@ -426,31 +445,41 @@ class _RequestCard extends StatelessWidget {
                       children: [
                         Icon(Icons.check_circle, color: Colors.green, size: 18),
                         SizedBox(width: 4),
-                        Text('Approved', style: TextStyle(color: Colors.green, fontWeight: FontWeight.bold)),
+                        Text('Approved',
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.bold)),
                         SizedBox(width: 8),
                       ],
                     ),
                   ),
-                
+
                 // Allow deleting old requests
                 IconButton(
-                  icon: const Icon(Icons.delete_outline, color: Colors.red, size: 20),
+                  icon: const Icon(Icons.delete_outline,
+                      color: Colors.red, size: 20),
                   onPressed: () {
                     if (request.docId != null) {
                       showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
                           title: const Text('Delete Booking?'),
-                          content: const Text('This will permanently remove this record.'),
+                          content: const Text(
+                              'This will permanently remove this record.'),
                           actions: [
-                            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
                             TextButton(
-                              onPressed: () {
-                                FirebaseFirestore.instance.collection('bookings').doc(request.docId).delete();
-                                Navigator.pop(context);
-                              }, 
-                              child: const Text('Delete', style: TextStyle(color: Colors.red))
-                            ),
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text('Cancel')),
+                            TextButton(
+                                onPressed: () {
+                                  FirebaseFirestore.instance
+                                      .collection('bookings')
+                                      .doc(request.docId)
+                                      .delete();
+                                  Navigator.pop(context);
+                                },
+                                child: const Text('Delete',
+                                    style: TextStyle(color: Colors.red))),
                           ],
                         ),
                       );
@@ -463,9 +492,9 @@ class _RequestCard extends StatelessWidget {
         ],
       ),
     )
-    .animate()
-    .fadeIn(duration: 400.ms, delay: animationDelay)
-    .slideY(begin: 0.05, end: 0);
+        .animate()
+        .fadeIn(duration: 400.ms, delay: animationDelay)
+        .slideY(begin: 0.05, end: 0);
   }
 }
 
@@ -491,17 +520,17 @@ class _DetailRow extends StatelessWidget {
           Text(
             '$label:',
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: AppColors.textSecondary,
-            ),
+                  color: AppColors.textSecondary,
+                ),
           ),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
               value,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontWeight: FontWeight.w500,
-                color: AppColors.textPrimary,
-              ),
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.textPrimary,
+                  ),
               overflow: TextOverflow.ellipsis,
             ),
           ),
